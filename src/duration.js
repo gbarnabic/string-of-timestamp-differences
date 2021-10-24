@@ -174,10 +174,8 @@ function duration(
         separator;
     }
   }
-  // remove the last separator if present
-  //if (output.lastIndexOf(separator) === output.length - separator.length) {
+  // remove the last separator
   output = output.substring(0, output.length - separator.length);
-  //}
 
   return output + " " + suffix;
 }
