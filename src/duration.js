@@ -37,7 +37,7 @@ function duration(
   if (pUnits.length !== sUnits.length) {
     return "Unit description lengths do not match!";
   }
-  let diff = Math.abs(start - end);
+  let diff = Math.abs(start - Number(end));
   let diffR;
   let suffix = start < end ? ending[0] : ending[1];
   let milliseconds, seconds, minutes, hours, days, months, years;
