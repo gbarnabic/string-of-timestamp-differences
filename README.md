@@ -6,7 +6,7 @@ Returns a string representing the time difference between two dates rounded to t
 Test here: onecompiler.com/javascript or jsfiddle.net/
 - Parameters:
   - **start**, **end** (optional)
-   - js dates, end defaults to now(). Properly formated, as dates, strings can also be passed.
+    - js dates, end defaults to now(). Properly formated, as dates, strings can also be passed.
   - **pUnits** (optional) - an array of stings that represent the plural unit words. 
       This also controls the precision desired. 
       The order needs to be:
