@@ -15,7 +15,8 @@
     sUnits (optional) - as above but singular of units. Note array length and
       order should be the same as pUnits.
     separator (optional) - separator string of units in the returned string.
-    ending (optional) - array that holds the final suffix. Default is ['ago','until']
+    otherFills (optional) - array that holds the final suffix. 
+      Default is ['ago','until','less than']
 */
 
 function duration(
@@ -32,7 +33,7 @@ function duration(
   ],
   sUnits = ["year", "month", "day", "hour", "minute", "second", "millisecond"],
   separator = ", ",
-  ending = ["ago", "until"]
+  otherFills = ["ago", "until", "less than"]
 ) {
   // if start or end are strings convert to dates
   start = typeof start === "string" ? new Date(start) : start;
@@ -44,7 +45,7 @@ function duration(
   }
   let diff = Math.abs(start - Number(end));
   let diffR;
-  let suffix = start < end ? ending[0] : ending[1];
+  let suffix = start < end ? otherFills[0] : otherFills[1];
   let milliseconds, seconds, minutes, hours, days, months, years;
 
   years = Math.floor(diff / 1000 / 60 / 60 / 24 / 365);
@@ -179,13 +180,32 @@ function duration(
         separator;
     }
   }
+  
   // remove the last separator
   output = output.substring(0, output.length - separator.length);
-
-  return output + " " + suffix;
+  
+  // if empty it must be less than last rounded unit
+  if (output === "") {
+    output = otherFills[2] + " 1 " + sUnits[sUnits.length - 1];
+  }
+  return output += " " + suffix;;
 }
 
 // tests
+console.log(
+  "result: " +
+    duration(
+      new Date("2020-10-20T00:00:40.210Z"),
+      new Date("2020-10-20T00:00:40.410Z"),
+      ["yrs", "mths", "days", "hrs", "mins", "secs"],
+      ["yr", "mth", "day", "hr", "min", "sec"],
+      undefined,
+      ["ago", "until", "<"]
+    )
+);
+console.log(" match: < 1 sec ago");
+console.log(" ");
+
 console.log(
   "result: " +
     duration(
