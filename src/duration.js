@@ -1,21 +1,17 @@
 /* 
-  Returns a string representing the time difference between  
-  two dates rounded to the unit precision. 
-  Test here: onecompiler.com/javascript or jsfiddle.net/
-
-  Parameters:
-    start, end (optional) - js dates, end defaults to now(). 
-      Properly formated, as dates, strings can also be passed.
-    pUnits (optional) - an array of stings that represent the plural unit words. 
+Returns a string representing the time difference between two dates rounded to the unit precision. 
+Test here: onecompiler.com/javascript or jsfiddle.net/
+- Parameters:
+  - **start**, **end** - end is optional and defaults to now(). Allow java date objects or properly formated, as dates, strings (i.e. "2021-10-20T14:35:46.217Z").
+  - **pUnits** (optional) - an array of stings that represent the plural unit words. 
       This also controls the precision desired. 
-      The order needs to be:
-      ['years','months','days','hours','minutes','seconds','milliseconds'].
+      The order needs to be: ['years','months','days','hours','minutes','seconds','milliseconds'].
       Omitting units from the end of the array will omit from the duration
       and round up to that last unit.
-    sUnits (optional) - as above but singular of units. Note array length and
+  - **sUnits** (optional) - as above but singular of units. Note array length and
       order should be the same as pUnits.
-    separator (optional) - separator string of units in the returned string.
-    otherFills (optional) - array that holds the final suffix. 
+  - **separator** (optional) - separator string of units in the returned string. Default is ', '
+  - **otherFills** (optional) - array that holds the final suffix. 
       Default is ['ago','until','less than']
 */
 
@@ -180,15 +176,15 @@ function duration(
         separator;
     }
   }
-  
+
   // remove the last separator
   output = output.substring(0, output.length - separator.length);
-  
+
   // if empty it must be less than last rounded unit
   if (output === "") {
     output = otherFills[2] + " 1 " + sUnits[sUnits.length - 1];
   }
-  return output += " " + suffix;;
+  return (output += " " + suffix);
 }
 
 // tests
@@ -262,3 +258,27 @@ console.log(
     )
 );
 console.log(" match: 1 yr, 4 hrs, 5 mins, 6 secs, 7 milisecs until");
+console.log(" ");
+
+console.log(
+  "result: " +
+    duration(
+      new Date("2021-10-20T14:35:46.217Z"),
+      new Date("2020-10-20T10:30:40.210Z"),
+      [
+        "años",
+        "meses",
+        "días",
+        "horas",
+        "minutos",
+        "segundos",
+        "millisegundos",
+      ],
+      ["año", "mes", "día", "hora", "minuto", "segundo", "millisegundo"],
+      undefined,
+      ["atrás", "hasta que", "menos que"]
+    )
+);
+console.log(
+  " match: 1 año, 4 horas, 5 minutos, 6 segundos, 7 millisegundos hasta que"
+);
