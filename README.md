@@ -1,5 +1,5 @@
 # string-of-timestamp-differences
-Given two java datetime stamps return a string that shows the differences in years, months, days, hour, minutes, seconds, milliseconds
+Given two java datetime stamps return a string that shows the differences in years, months, days, hour, minutes, seconds, milliseconds. You can pass in unit string arrays to accomidate different languages.
 
 
 Returns a string representing the time difference between two dates rounded to the unit precision. 
