@@ -5,12 +5,10 @@ Given two java datetime stamps return a string that shows the differences in yea
 Returns a string representing the time difference between two dates rounded to the unit precision. 
 Test here: onecompiler.com/javascript or jsfiddle.net/
 - Parameters:
-  - **start**, **end** (optional)
-    - js dates, end defaults to now(). Properly formated, as dates, strings can also be passed.
+  - **start**, **end** (optional) - js dates, end defaults to now(). Properly formated, as dates, strings can also be passed.
   - **pUnits** (optional) - an array of stings that represent the plural unit words. 
       This also controls the precision desired. 
-      The order needs to be:
-      ['years','months','days','hours','minutes','seconds','milliseconds'].
+      The order needs to be: ['years','months','days','hours','minutes','seconds','milliseconds'].
       Omitting units from the end of the array will omit from the duration
       and round up to that last unit.
   - **sUnits** (optional) - as above but singular of units. Note array length and
