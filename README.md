@@ -13,6 +13,6 @@ Test here: onecompiler.com/javascript or jsfiddle.net/
       and round up to that last unit.
   - **sUnits** (optional) - as above but singular of units. Note array length and
       order should be the same as pUnits.
-  - **separator** (optional) - separator string of units in the returned string.
+  - **separator** (optional) - separator string of units in the returned string. Default is ', '
   - **otherFills** (optional) - array that holds the final suffix. 
       Default is ['ago','until','less than']
