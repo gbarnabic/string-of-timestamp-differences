@@ -4,7 +4,8 @@
   Test here: onecompiler.com/javascript or jsfiddle.net/
 
   Parameters:
-    start, end (optional) - js dates, end defaults to now().
+    start, end (optional) - js dates, end defaults to now(). 
+      Properly formated, as dates, strings can also be passed.
     pUnits (optional) - an array of stings that represent the plural unit words. 
       This also controls the precision desired. 
       The order needs to be:
@@ -33,6 +34,10 @@ function duration(
   separator = ", ",
   ending = ["ago", "until"]
 ) {
+  // if start or end are strings convert to dates
+  start = typeof start === "string" ? new Date(start) : start;
+  end = typeof end === "string" ? new Date(end) : end;
+
   // return if pUnits length does not match sUnits length
   if (pUnits.length !== sUnits.length) {
     return "Unit description lengths do not match!";
